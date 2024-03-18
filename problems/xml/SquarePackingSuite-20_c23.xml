@@ -1,0 +1,116 @@
+<instance format="XCSP3" type="CSP">
+  <variables>
+    <array id="x" note="x[i] is the x-coordinate where is put the ith rectangle" size="[20]">
+      <domain for="x[0]"> 0..33 </domain>
+      <domain for="x[1]"> 0..32 </domain>
+      <domain for="x[2]"> 0..31 </domain>
+      <domain for="x[3]"> 0..30 </domain>
+      <domain for="x[4]"> 0..29 </domain>
+      <domain for="x[5]"> 0..28 </domain>
+      <domain for="x[6]"> 0..27 </domain>
+      <domain for="x[7]"> 0..26 </domain>
+      <domain for="x[8]"> 0..25 </domain>
+      <domain for="x[9]"> 0..24 </domain>
+      <domain for="x[10]"> 0..23 </domain>
+      <domain for="x[11]"> 0..22 </domain>
+      <domain for="x[12]"> 0..21 </domain>
+      <domain for="x[13]"> 0..20 </domain>
+      <domain for="x[14]"> 0..19 </domain>
+      <domain for="x[15]"> 0..18 </domain>
+      <domain for="x[16]"> 0..17 </domain>
+      <domain for="x[17]"> 0..16 </domain>
+      <domain for="x[18]"> 0..15 </domain>
+      <domain for="x[19]"> 0..14 </domain>
+    </array>
+    <array id="y" note="y[i] is the y-coordinate where is put the ith rectangle" size="[20]">
+      <domain for="y[0]"> 0..84 </domain>
+      <domain for="y[1]"> 0..83 </domain>
+      <domain for="y[2]"> 0..82 </domain>
+      <domain for="y[3]"> 0..81 </domain>
+      <domain for="y[4]"> 0..80 </domain>
+      <domain for="y[5]"> 0..79 </domain>
+      <domain for="y[6]"> 0..78 </domain>
+      <domain for="y[7]"> 0..77 </domain>
+      <domain for="y[8]"> 0..76 </domain>
+      <domain for="y[9]"> 0..75 </domain>
+      <domain for="y[10]"> 0..74 </domain>
+      <domain for="y[11]"> 0..73 </domain>
+      <domain for="y[12]"> 0..72 </domain>
+      <domain for="y[13]"> 0..71 </domain>
+      <domain for="y[14]"> 0..70 </domain>
+      <domain for="y[15]"> 0..69 </domain>
+      <domain for="y[16]"> 0..68 </domain>
+      <domain for="y[17]"> 0..67 </domain>
+      <domain for="y[18]"> 0..66 </domain>
+      <domain for="y[19]"> 0..65 </domain>
+    </array>
+  </variables>
+  <constraints>
+    <noOverlap note="no overlap on boxes">
+      <origins> (x[0],y[0])(x[1],y[1])(x[2],y[2])(x[3],y[3])(x[4],y[4])(x[5],y[5])(x[6],y[6])(x[7],y[7])(x[8],y[8])(x[9],y[9])(x[10],y[10])(x[11],y[11])(x[12],y[12])(x[13],y[13])(x[14],y[14])(x[15],y[15])(x[16],y[16])(x[17],y[17])(x[18],y[18])(x[19],y[19]) </origins>
+      <lengths> (1,1)(2,2)(3,3)(4,4)(5,5)(6,6)(7,7)(8,8)(9,9)(10,10)(11,11)(12,12)(13,13)(14,14)(15,15)(16,16)(17,17)(18,18)(19,19)(20,20) </lengths>
+    </noOverlap>
+    <group class="redundant-constraints">
+      <cumulative>
+        <origins> %... </origins>
+        <lengths> 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 </lengths>
+        <heights> 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 </heights>
+        <condition> (le,%0) </condition>
+      </cumulative>
+      <args> 85 x[] </args>
+      <args> 34 y[] </args>
+    </group>
+    <block class="symmetry-breaking">
+      <group>
+        <intension> le(%0,%1) </intension>
+        <args> x[19] 7 </args>
+        <args> y[19] 32 </args>
+      </group>
+      <group>
+        <intension> ne(%0,%1) </intension>
+        <args> x[1] 1 </args>
+        <args> x[1] 2 </args>
+        <args> x[2] 2 </args>
+        <args> x[2] 3 </args>
+        <args> x[3] 2 </args>
+        <args> x[4] 3 </args>
+        <args> x[5] 3 </args>
+        <args> x[6] 3 </args>
+        <args> x[7] 3 </args>
+        <args> x[8] 4 </args>
+        <args> x[9] 4 </args>
+        <args> x[10] 4 </args>
+        <args> x[11] 5 </args>
+        <args> x[12] 5 </args>
+        <args> x[13] 5 </args>
+        <args> x[14] 5 </args>
+        <args> x[15] 5 </args>
+        <args> x[16] 5 </args>
+        <args> x[17] 6 </args>
+        <args> x[18] 6 </args>
+        <args> x[19] 6 </args>
+        <args> y[1] 1 </args>
+        <args> y[1] 2 </args>
+        <args> y[2] 2 </args>
+        <args> y[2] 3 </args>
+        <args> y[3] 2 </args>
+        <args> y[4] 3 </args>
+        <args> y[5] 3 </args>
+        <args> y[6] 3 </args>
+        <args> y[7] 3 </args>
+        <args> y[8] 4 </args>
+        <args> y[9] 4 </args>
+        <args> y[10] 4 </args>
+        <args> y[11] 5 </args>
+        <args> y[12] 5 </args>
+        <args> y[13] 5 </args>
+        <args> y[14] 5 </args>
+        <args> y[15] 5 </args>
+        <args> y[16] 5 </args>
+        <args> y[17] 6 </args>
+        <args> y[18] 6 </args>
+        <args> y[19] 6 </args>
+      </group>
+    </block>
+  </constraints>
+</instance>

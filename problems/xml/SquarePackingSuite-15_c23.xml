@@ -1,0 +1,96 @@
+<instance format="XCSP3" type="CSP">
+  <variables>
+    <array id="x" note="x[i] is the x-coordinate where is put the ith rectangle" size="[15]">
+      <domain for="x[0]"> 0..22 </domain>
+      <domain for="x[1]"> 0..21 </domain>
+      <domain for="x[2]"> 0..20 </domain>
+      <domain for="x[3]"> 0..19 </domain>
+      <domain for="x[4]"> 0..18 </domain>
+      <domain for="x[5]"> 0..17 </domain>
+      <domain for="x[6]"> 0..16 </domain>
+      <domain for="x[7]"> 0..15 </domain>
+      <domain for="x[8]"> 0..14 </domain>
+      <domain for="x[9]"> 0..13 </domain>
+      <domain for="x[10]"> 0..12 </domain>
+      <domain for="x[11]"> 0..11 </domain>
+      <domain for="x[12]"> 0..10 </domain>
+      <domain for="x[13]"> 0..9 </domain>
+      <domain for="x[14]"> 0..8 </domain>
+    </array>
+    <array id="y" note="y[i] is the y-coordinate where is put the ith rectangle" size="[15]">
+      <domain for="y[0]"> 0..54 </domain>
+      <domain for="y[1]"> 0..53 </domain>
+      <domain for="y[2]"> 0..52 </domain>
+      <domain for="y[3]"> 0..51 </domain>
+      <domain for="y[4]"> 0..50 </domain>
+      <domain for="y[5]"> 0..49 </domain>
+      <domain for="y[6]"> 0..48 </domain>
+      <domain for="y[7]"> 0..47 </domain>
+      <domain for="y[8]"> 0..46 </domain>
+      <domain for="y[9]"> 0..45 </domain>
+      <domain for="y[10]"> 0..44 </domain>
+      <domain for="y[11]"> 0..43 </domain>
+      <domain for="y[12]"> 0..42 </domain>
+      <domain for="y[13]"> 0..41 </domain>
+      <domain for="y[14]"> 0..40 </domain>
+    </array>
+  </variables>
+  <constraints>
+    <noOverlap note="no overlap on boxes">
+      <origins> (x[0],y[0])(x[1],y[1])(x[2],y[2])(x[3],y[3])(x[4],y[4])(x[5],y[5])(x[6],y[6])(x[7],y[7])(x[8],y[8])(x[9],y[9])(x[10],y[10])(x[11],y[11])(x[12],y[12])(x[13],y[13])(x[14],y[14]) </origins>
+      <lengths> (1,1)(2,2)(3,3)(4,4)(5,5)(6,6)(7,7)(8,8)(9,9)(10,10)(11,11)(12,12)(13,13)(14,14)(15,15) </lengths>
+    </noOverlap>
+    <group class="redundant-constraints">
+      <cumulative>
+        <origins> %... </origins>
+        <lengths> 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 </lengths>
+        <heights> 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 </heights>
+        <condition> (le,%0) </condition>
+      </cumulative>
+      <args> 55 x[] </args>
+      <args> 23 y[] </args>
+    </group>
+    <block class="symmetry-breaking">
+      <group>
+        <intension> le(%0,%1) </intension>
+        <args> x[14] 4 </args>
+        <args> y[14] 20 </args>
+      </group>
+      <group>
+        <intension> ne(%0,%1) </intension>
+        <args> x[1] 1 </args>
+        <args> x[1] 2 </args>
+        <args> x[2] 2 </args>
+        <args> x[2] 3 </args>
+        <args> x[3] 2 </args>
+        <args> x[4] 3 </args>
+        <args> x[5] 3 </args>
+        <args> x[6] 3 </args>
+        <args> x[7] 3 </args>
+        <args> x[8] 4 </args>
+        <args> x[9] 4 </args>
+        <args> x[10] 4 </args>
+        <args> x[11] 5 </args>
+        <args> x[12] 5 </args>
+        <args> x[13] 5 </args>
+        <args> x[14] 5 </args>
+        <args> y[1] 1 </args>
+        <args> y[1] 2 </args>
+        <args> y[2] 2 </args>
+        <args> y[2] 3 </args>
+        <args> y[3] 2 </args>
+        <args> y[4] 3 </args>
+        <args> y[5] 3 </args>
+        <args> y[6] 3 </args>
+        <args> y[7] 3 </args>
+        <args> y[8] 4 </args>
+        <args> y[9] 4 </args>
+        <args> y[10] 4 </args>
+        <args> y[11] 5 </args>
+        <args> y[12] 5 </args>
+        <args> y[13] 5 </args>
+        <args> y[14] 5 </args>
+      </group>
+    </block>
+  </constraints>
+</instance>

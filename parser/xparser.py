@@ -4,22 +4,33 @@ import sys
 from xml.etree import ElementTree
 
 from pycsp3.classes.auxiliary.conditions import Condition, ConditionValue, ConditionVariable
-from pycsp3.classes.auxiliary.enums import (TypeFramework, TypeVar, TypeCtr, TypeCtrArg, TypeAnn, TypeConditionOperator, TypeArithmeticOperator,
+from pycsp3.classes.auxiliary.enums import (TypeFramework, TypeVar, TypeCtr, TypeCtrArg, TypeAnn, TypeConditionOperator,
+                                            TypeArithmeticOperator,
                                             TypeUnaryArithmeticOperator, TypeOrderedOperator, TypeRank, TypeObj)
 from pycsp3.classes.main.variables import Variable
-from pycsp3.classes.nodes import (TypeNode, Node, x_relop_k, k_relop_x, x_ariop_k__relop_l, l_relop__x_ariop_k, x_setop_S, x_in_intvl, x_notin_intvl, min_relop,
-                                  max_relop, x_ariop_y__relop_z, z_relop__x_ariop_y, logic_X, logic_X__eq_x, logic_X__ne_x, logic_y_relop_z__eq_x, x_relop_y,
-                                  x_ariop_y__relop_k, add_mul_vars__relop, add_vars__relop, k_relop__x_ariop_y, x_relop__y_ariop_k, y_ariop_k__relop_x,
+from pycsp3.classes.nodes import (TypeNode, Node, x_relop_k, k_relop_x, x_ariop_k__relop_l, l_relop__x_ariop_k,
+                                  x_setop_S, x_in_intvl, x_notin_intvl, min_relop,
+                                  max_relop, x_ariop_y__relop_z, z_relop__x_ariop_y, logic_X, logic_X__eq_x,
+                                  logic_X__ne_x, logic_y_relop_z__eq_x, x_relop_y,
+                                  x_ariop_y__relop_k, add_mul_vars__relop, add_vars__relop, k_relop__x_ariop_y,
+                                  x_relop__y_ariop_k, y_ariop_k__relop_x,
                                   logic_y_relop_k__eq_x, logic_k_relop_y__eq_x, unalop_x__eq_y, add_mul_vals__relop)
-from pycsp3.parser.callbacks import Callbacks
-from pycsp3.parser.constants import (COVERED, CLOSED, RANK, START_INDEX, START_ROW_INDEX, START_COL_INDEX, ZERO_IGNORED, STATIC,
-                                     DELIMITER_LISTS, DELIMITER_COMMA, DELIMITER_WHITESPACE, ID, CLASS, VAR, ARRAY, DOMAIN, SIZE, AS, FOR, TYPE, GROUP, BLOCK,
-                                     INTENSION, MATRIX, INDEX, OFFSET, COLLECT, CIRCULAR, STARRED, UNCLEANED, MINIMIZE, ORDER)
-from pycsp3.parser.methods import (parse_domain, parse_expression, parse_sequence, parse_double_sequence, parse_double_sequence_of_vars, parse_condition,
+from pycsp3.parser.callbacks import Callbacks, CallbacksCPMPy
+from pycsp3.parser.constants import (COVERED, CLOSED, RANK, START_INDEX, START_ROW_INDEX, START_COL_INDEX, ZERO_IGNORED,
+                                     STATIC,
+                                     DELIMITER_LISTS, DELIMITER_COMMA, DELIMITER_WHITESPACE, ID, CLASS, VAR, ARRAY,
+                                     DOMAIN, SIZE, AS, FOR, TYPE, GROUP, BLOCK,
+                                     INTENSION, MATRIX, INDEX, OFFSET, COLLECT, CIRCULAR, STARRED, UNCLEANED, MINIMIZE,
+                                     ORDER)
+from pycsp3.parser.methods import (parse_domain, parse_expression, parse_sequence, parse_double_sequence,
+                                   parse_double_sequence_of_vars, parse_condition,
                                    parse_conditions, parse_data, parse_tuples, replace_intern_commas)
-from pycsp3.parser.xentries import XCtr, XBlock, XGroup, XSlide, XObjExpr, XVar, XVarArray, domains_for, XCtrArg, XObjSpecial, XAnn
+from pycsp3.parser.xentries import XCtr, XBlock, XGroup, XSlide, XObjExpr, XVar, XVarArray, domains_for, XCtrArg, \
+    XObjSpecial, XAnn
 from pycsp3.tools.curser import OpOverrider
 from pycsp3.tools.utilities import flatten
+#Link your local cpmpy version if needed..
+#sys.path.append('C:\\Users\\..\\cpmpy')
 
 OpOverrider.disable()  # because activated due to the imports (and this causes problem with XVar inheriting from Variable)
 
@@ -771,12 +782,35 @@ class CallbackerXCSP3:
 
 
 if __name__ == "__main__":
-    assert len(sys.argv) >= 2
-    parser = ParserXCSP3(os.path.join("./", sys.argv[1]))
-    callbacks = Callbacks()
-    # e.g., callbacks.force_exit = True
-    # e.g., callbacks.recognize_unary_primitives = False
-    callbacker = CallbackerXCSP3(parser, callbacks)
-    callbacker.load_instance()
+    import glob
+    from os.path import join
+    problems = glob.glob(join("..", "problems","xml", '*.xml'))
+    print(problems)
+    count = 0
+    ecount = 0
+    for xml in problems[count:]:
+        count += 1
+        '''if len(sys.argv) < 2:
+            sys.argv.append(xml)
+        assert len(sys.argv) >= 2'''
+        #we are not using commandline
+        #parser = ParserXCSP3(os.path.join("./", sys.argv[1]))
+        parser = ParserXCSP3(xml)
+        callbacks = CallbacksCPMPy()
+        callbacks.force_exit = True
+        # e.g., callbacks.recognize_unary_primitives = False
+        callbacker = CallbackerXCSP3(parser, callbacks)
+        try:
+            callbacker.load_instance()
+        except NotImplementedError as e:
+            ecount += 1
+        cb = callbacker.cb
+        print(cb.cpm_model)
+        print(cb.cpm_variables)
+        print('________________________________________________________')
+        print(count)
+        print('________________________________________________________')
+        print('________________________________________________________')
 
+    print('not implemented:', ecount, 'out of', count)
     # obj = build_dynamic_object(sys.argv[2], sys.argv[3])
