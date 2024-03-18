@@ -806,10 +806,6 @@ if __name__ == "__main__":
             ecount += 1
         cb = callbacker.cb
         print(cb.cpm_model)
-        print(cb.cpm_variables)
-        print('________________________________________________________')
-        print(count)
-        print('________________________________________________________')
         print('________________________________________________________')
 
     print('not implemented:', ecount, 'out of', count)
